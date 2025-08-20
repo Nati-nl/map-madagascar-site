@@ -2,10 +2,11 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="google-site-verification" content="-e2sbrkgr9ttGWn8LO_xyeuaR_knZ57Bd2PwU7q0cT0" />
-  <title>MAP MADAGASCAR BY NATI NANOL</title>
+  <meta name="google-site-verification" content="-e2sbrkgr9ttGWn8LO_xyeuaR_knZ57Bd2PwU7q0cT0"/>
+  <title>Map Madagascar by Nati Nanol</title>
   <link rel="stylesheet" href="style.css">
   <style>
+
     * {
       margin: 0;
       padding: 0;
@@ -15,7 +16,6 @@
     body {
       font-family: "Segoe UI", Arial, sans-serif;
       background-color: white;
-      display: flex;
       color: black;
       line-height: 1.6;
     }
@@ -88,6 +88,7 @@
       color: #00CCFF;
     }
 
+    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -122,27 +123,32 @@
       background: #c0392b;
     }
 
-    main {
-    flex: 1;
-    }
-    
     footer {
       background: #1c1c1c;
       text-align: center;
       padding: 20px;
       font-size: 0.9rem;
       color: #aaa;
-      margin-top: auto;
+      margin-top: 40px;
+    }
+
+    .scroll {
+      font-size: 1.1rem;
+      margin-top: 50px;
+      margin-bottom: 0;
+      color: #00CCFF;
     }
   </style>
 </head>
 <body>
 
+  <!-- Header -->
  <header>
   <img src="couverture.jpg" alt="Couverture Map Nati">
   <h1>Map Madagascar By Nati Nanol</h1>
 </header>
 
+  <!-- Navigation -->
   <nav>
     <a href="https://web.facebook.com/profile.php?id=100064074365576&sk=photos_by" class="btn">📷 Photos</a>
     <a href="https://web.facebook.com/profile.php?id=100064074365576&sk=videos" class="btn">🎥 Vidéos</a>
@@ -150,14 +156,19 @@
     <button class="btn" onclick="openModal()">✨ Divers</button>
   </nav>
 
+  <!-- Présentation -->
   <section>
+    <h2>Présentation</h2>
     <p>
       Bienvenue sur <strong>MAP MADAGASCAR BY NATI NANOL</strong>, un projet unique mettant en avant la beauté
       et la diversité des routes nationales à Madagascar dans Euro Truck Simulator 2.
       Ici, vous trouverez mes créations, mes inspirations et les coulisses de ce travail passionné.
     </p>
+    <h6><marquee behavior="scroll" direction="right" class="scroll" > Bienvenue !!! </marquee>
+</h6>
   </section>
 
+  <!-- Modal -->
   <div id="myModal" class="modal">
     <div class="modal-content">
       <h2>Divers</h2>
@@ -166,6 +177,7 @@
     </div>
   </div>
 
+  <!-- Footer -->
   <footer>
     © 2025 - MAP MADAGASCAR BY NATI NANOL | Projet créé par Nati Nanol
   </footer>
@@ -181,8 +193,3 @@
 
 </body>
 </html>
-
-
-
-
-

@@ -59,7 +59,6 @@
       color: #00CCFF;
     }
 
-    /* SLIDER */
     .slider {
       position: relative;
       max-width: 1000px;
@@ -88,7 +87,6 @@
     }
     .dot.active { background: #3498db; }
 
-    /* Modal image plein écran */
     .modal {
       display: none; position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
@@ -119,22 +117,19 @@
 </head>
 <body>
 
-  <!-- Header -->
   <header>
     <img src="couverture.jpg" alt="Couverture Map Nati">
     <h1>Map Madagascar By Nati Nanol</h1>
   </header>
 
-  <!-- Navigation -->
   <nav>
-    <a href="#presentation" class="btn">📌 Présentation</a>
-    <a href="#galerie" class="btn">🖼 Galerie</a>
-    <a href="https://web.facebook.com/profile.php?id=100064074365576&sk=photos_by" class="btn">📷 Photos</a>
-    <a href="https://web.facebook.com/profile.php?id=100064074365576&sk=videos" class="btn">🎥 Vidéos</a>
-    <button class="btn" onclick="openModal()">✨ Divers</button>
+    <a href="#presentation" class="btn">Présentation</a>
+    <a href="galerie.html" class="btn">Galerie</a>
+    <a href="https://web.facebook.com/profile.php?id=100064074365576&sk=photos_by" class="btn">Photos</a>
+    <a href="https://web.facebook.com/profile.php?id=100064074365576&sk=videos" class="btn">Vidéos</a>
+    <button class="btn" onclick="openModal()">Divers</button>
   </nav>
 
-  <!-- Présentation -->
   <section id="presentation">
     <h2>Présentation</h2>
     <p>
@@ -145,7 +140,6 @@
     <h6><marquee behavior="scroll" direction="right" class="scroll">Bienvenue !!!</marquee></h6>
   </section>
 
-  <!-- Galerie -->
   <section id="galerie">
     <h2>Galerie d’Exposition</h2>
     <div class="slider">
@@ -156,13 +150,11 @@
     <div class="dots" id="dots"></div>
   </section>
 
-  <!-- Modal plein écran -->
   <div id="imgModal" class="modal">
     <span class="close" onclick="closeImg()">&times;</span>
     <img id="modalImg">
   </div>
 
-  <!-- Modal Divers -->
   <div id="myModal" class="modal">
     <div class="modal-content" style="background:#222; padding:30px; border-radius:12px; text-align:center; color:white;">
       <h2>Divers</h2>
@@ -171,7 +163,6 @@
     </div>
   </div>
 
-  <!-- Footer -->
   <footer>
     © 2025 - MAP MADAGASCAR BY NATI NANOL | Projet créé par Nati Nanol
   </footer>
@@ -232,3 +223,4 @@
 
 </body>
 </html>
+

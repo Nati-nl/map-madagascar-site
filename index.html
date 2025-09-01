@@ -6,12 +6,7 @@
   <title>Map Madagascar by Nati Nanol</title>
   <link rel="stylesheet" href="style.css">
   <style>
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: "Segoe UI", Arial, sans-serif;
@@ -20,25 +15,15 @@
       line-height: 1.6;
     }
 
-    header {
-      position: relative;
-      text-align: center;
-    }
-
+    header { position: relative; text-align: center; }
     header img {
-      width: 100%;
-      max-height: 500px;
-      object-fit: cover;
+      width: 100%; max-height: 500px; object-fit: cover;
       filter: brightness(70%);
     }
-
     header h1 {
-      position: absolute;
-      top: 50%;
-      left: 50%;
+      position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      color: #fff;
-      font-size: 3rem;
+      color: #fff; font-size: 3rem;
       text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
     }
 
@@ -48,132 +33,141 @@
       display: flex;
       justify-content: center;
       gap: 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      position: sticky; top: 0; z-index: 1000;
     }
-
     .btn {
-      padding: 10px 18px;
-      background: #3498db;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: 0.3s;
+      padding: 10px 18px; background: #3498db;
+      color: white; text-decoration: none;
+      border-radius: 6px; transition: 0.3s;
       font-weight: bold;
     }
+    .btn:hover { background: #2980b9; }
 
-    .btn:hover {
-      background: #2980b9;
-    }
-
-    section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
+    section { padding: 60px 20px; max-width: 1000px; margin: auto; }
     section h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #e74c3c;
-      text-align: center;
+      font-size: 2rem; margin-bottom: 20px;
+      color: #e74c3c; text-align: center;
     }
-
     section p {
-      text-align: center;
-      font-size: 1.1rem;
-      max-width: 800px;
-      margin: auto;
-      color: #00CCFF;
-    }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      background: #222;
-      padding: 30px;
-      border-radius: 12px;
-      width: 350px;
-      text-align: center;
-      box-shadow: 0px 5px 20px rgba(0,0,0,0.5);
-    }
-
-    .close-btn {
-      margin-top: 20px;
-      padding: 8px 15px;
-      background: #e74c3c;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .close-btn:hover {
-      background: #c0392b;
-    }
-
-    footer {
-      background: #1c1c1c;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #aaa;
-      margin-top: 40px;
+      text-align: center; font-size: 1.1rem;
+      max-width: 800px; margin: auto; color: #00CCFF;
     }
 
     .scroll {
       font-size: 1.1rem;
-      margin-top: 100px;
-      margin-bottom: 100px;
+      margin-top: 100px; margin-bottom: 100px;
       color: #00CCFF;
+    }
+
+    /* SLIDER */
+    .slider {
+      position: relative;
+      max-width: 1000px;
+      margin: auto;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    .slides { display: flex; transition: transform 0.6s ease-in-out; }
+    .slides img { width: 100%; flex-shrink: 0; border-radius: 12px; cursor: pointer; }
+
+    .prev, .next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.6); color: white; border: none;
+      padding: 12px; cursor: pointer; border-radius: 50%; font-size: 20px;
+    }
+    .prev { left: 15px; }
+    .next { right: 15px; }
+    .prev:hover, .next:hover { background: rgba(0,0,0,0.9); }
+
+    .dots { text-align: center; margin-top: 15px; }
+    .dot {
+      display: inline-block; width: 12px; height: 12px;
+      margin: 0 4px; background: #bbb; border-radius: 50%;
+      cursor: pointer;
+    }
+    .dot.active { background: #3498db; }
+
+    /* Modal image plein écran */
+    .modal {
+      display: none; position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center; align-items: center;
+      z-index: 2000;
+    }
+    .modal img {
+      max-width: 90%; max-height: 80%;
+      border-radius: 12px;
+    }
+    .close {
+      position: absolute; top: 20px; right: 40px;
+      color: white; font-size: 40px; cursor: pointer;
+    }
+
+    footer {
+      background: #1c1c1c; text-align: center;
+      padding: 20px; font-size: 0.9rem; color: #aaa;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.8rem; }
+      .prev, .next { padding: 8px; font-size: 16px; }
     }
   </style>
 </head>
 <body>
 
   <!-- Header -->
- <header>
-  <img src="couverture.jpg" alt="Couverture Map Nati">
-  <h1>Map Madagascar By Nati Nanol</h1>
-</header>
+  <header>
+    <img src="couverture.jpg" alt="Couverture Map Nati">
+    <h1>Map Madagascar By Nati Nanol</h1>
+  </header>
 
   <!-- Navigation -->
   <nav>
+    <a href="#presentation" class="btn">📌 Présentation</a>
+    <a href="#galerie" class="btn">🖼 Galerie</a>
     <a href="https://web.facebook.com/profile.php?id=100064074365576&sk=photos_by" class="btn">📷 Photos</a>
     <a href="https://web.facebook.com/profile.php?id=100064074365576&sk=videos" class="btn">🎥 Vidéos</a>
-    <a href="https://web.facebook.com/profile.php?id=100064074365576&sk=mentions" class="btn">📌 Mentions</a>
     <button class="btn" onclick="openModal()">✨ Divers</button>
   </nav>
 
   <!-- Présentation -->
-  <section>
+  <section id="presentation">
     <h2>Présentation</h2>
     <p>
       Bienvenue sur <strong>MAP MADAGASCAR BY NATI NANOL</strong>, un projet unique mettant en avant la beauté
       et la diversité des routes nationales à Madagascar dans Euro Truck Simulator 2.
       Ici, vous trouverez mes créations, mes inspirations et les coulisses de ce travail passionné.
     </p>
-    <h6><marquee behavior="scroll" direction="right" class="scroll" > Bienvenue !!! </marquee>
-</h6>
+    <h6><marquee behavior="scroll" direction="right" class="scroll">Bienvenue !!!</marquee></h6>
   </section>
 
-  <!-- Modal -->
+  <!-- Galerie -->
+  <section id="galerie">
+    <h2>Galerie d’Exposition</h2>
+    <div class="slider">
+      <div class="slides" id="slides"></div>
+      <button class="prev" onclick="moveSlide(-1)">❮</button>
+      <button class="next" onclick="moveSlide(1)">❯</button>
+    </div>
+    <div class="dots" id="dots"></div>
+  </section>
+
+  <!-- Modal plein écran -->
+  <div id="imgModal" class="modal">
+    <span class="close" onclick="closeImg()">&times;</span>
+    <img id="modalImg">
+  </div>
+
+  <!-- Modal Divers -->
   <div id="myModal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content" style="background:#222; padding:30px; border-radius:12px; text-align:center; color:white;">
       <h2>Divers</h2>
       <p>Tous ce que vous voyez dans cette page sont mes œuvres d'art.</p>
-      <button class="close-btn" onclick="closeModal()">Fermer</button>
+      <button class="close-btn" onclick="closeModal()" style="margin-top:20px; padding:8px 15px; background:#e74c3c; color:white; border:none; border-radius:5px; cursor:pointer;">Fermer</button>
     </div>
   </div>
 
@@ -183,14 +177,58 @@
   </footer>
 
   <script>
-    function openModal() {
-      document.getElementById("myModal").style.display = "flex";
+    // Divers modal
+    function openModal() { document.getElementById("myModal").style.display = "flex"; }
+    function closeModal() { document.getElementById("myModal").style.display = "none"; }
+
+    // Galerie
+    const slidesContainer = document.getElementById("slides");
+    const dotsContainer = document.getElementById("dots");
+    const totalImages = 25; // car1.png → car25.png
+    let currentIndex = 0;
+    let slideInterval;
+
+    for (let i = 1; i <= totalImages; i++) {
+      const img = document.createElement("img");
+      img.src = "car" + i + ".png";
+      img.alt = "Image " + i;
+      img.addEventListener("click", () => openImg(img.src));
+      slidesContainer.appendChild(img);
+
+      const dot = document.createElement("span");
+      dot.classList.add("dot");
+      dot.addEventListener("click", () => goToSlide(i - 1));
+      dotsContainer.appendChild(dot);
     }
-    function closeModal() {
-      document.getElementById("myModal").style.display = "none";
+
+    const slides = document.querySelectorAll(".slides img");
+    const dots = document.querySelectorAll(".dot");
+
+    function showSlide(index) {
+      if (index >= slides.length) index = 0;
+      if (index < 0) index = slides.length - 1;
+      currentIndex = index;
+      slidesContainer.style.transform = `translateX(${-index * 100}%)`;
+      dots.forEach(dot => dot.classList.remove("active"));
+      dots[index].classList.add("active");
     }
+
+    function moveSlide(step) { showSlide(currentIndex + step); resetAutoSlide(); }
+    function goToSlide(index) { showSlide(index); resetAutoSlide(); }
+    function startAutoSlide() { slideInterval = setInterval(() => showSlide(currentIndex + 1), 4000); }
+    function resetAutoSlide() { clearInterval(slideInterval); startAutoSlide(); }
+
+    // Plein écran image
+    function openImg(src) {
+      document.getElementById("imgModal").style.display = "flex";
+      document.getElementById("modalImg").src = src;
+    }
+    function closeImg() { document.getElementById("imgModal").style.display = "none"; }
+
+    // Initialisation
+    showSlide(0);
+    startAutoSlide();
   </script>
 
 </body>
 </html>
-

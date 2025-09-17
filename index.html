@@ -60,15 +60,20 @@
         }
 
         .slider {
-            position: relative;
-            max-width: 1000px;
-            margin: auto;
-            overflow: hidden;
+            display: flex;
+            transition: transform 0.6s ease-in-out;
+            justify-content: center;
+            align-items: center;
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
-        .slides { display: flex; transition: transform 0.6s ease-in-out; }
-        .slides img { width: 100%; flex-shrink: 0; border-radius: 12px; cursor: pointer; }
+        
+        .slides img {
+            max-width: 100%;
+            height : auto;
+            border-radius: 12px;
+            cursor: pointer;
+         }
 
         .prev, .next {
             position: absolute; top: 50%; transform: translateY(-50%);
@@ -205,7 +210,10 @@
             if (index >= slides.length) index = 0;
             if (index < 0) index = slides.length - 1;
             currentIndex = index;
-            slidesContainer.style.transform = `translateX(${-index * 100}%)`;
+            slidesContainer.scrollTo({
+             left: slides[index].offsetLeft,
+             behavior: "smooth"
+            }); 
             dots.forEach(dot => dot.classList.remove("active"));
             dots[index].classList.add("active");
         }
@@ -237,3 +245,4 @@
 
 </body>
 </html>
+

@@ -6,13 +6,17 @@
     <title>Map Madagascar by Nati Nanol</title>
     <link rel="stylesheet" href="style.css">
     <style>
-         { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: "Segoe UI", Arial, sans-serif;
             background-color: white;
             color: black;
             line-height: 1.6;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         header { position: relative; text-align: center; }
@@ -70,9 +74,19 @@
         
         .slides img {
             max-width: 100%;
-            height: auto;
+            height : auto;
             border-radius: 12px;
             cursor: pointer;
+            position: relative;
+        }
+
+        .watermark {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 16px;
+            color: rgba(255,255,255,0.5);
+            pointer-events: none;
         }
 
         .prev { left: 15px; }
@@ -94,7 +108,7 @@
             justify-content: center; align-items: center;
             z-index: 2000;
         }
-        .modal img, .modal video {
+        .modal img {
             max-width: 90%; max-height: 80%;
             border-radius: 12px;
         }
@@ -102,29 +116,25 @@
             position: absolute; top: 20px; right: 40px;
             color: white; font-size: 40px; cursor: pointer;
         }
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
 
-        /* --- Galerie Vidéos --- */
-        .video-slider {
-            display: flex;
-            transition: transform 0.6s ease-in-out;
-            justify-content: center;
-            align-items: center;
+        .video-container {
+            position: relative;
+            margin: 40px auto;
+            max-width: 1000px;
+        }
+
+        .video-container video {
+            width: 100%;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            pointer-events: none;
         }
-        .video-slides video {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            cursor: pointer;
-        }
-        .video-dots { text-align: center; margin-top: 15px; }
-        .video-dot {
-            display: inline-block; width: 12px; height: 12px;
-            margin: 0 4px; background: #bbb; border-radius: 50%;
-            cursor: pointer;
-        }
-        .video-dot.active { background: #e74c3c; }
 
         footer {
             background: #1c1c1c; text-align: center;
@@ -138,7 +148,7 @@
         }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false" ondragstart="return false">
 
     <header>
         <img src="couverture.jpg" alt="Couverture Map Nati">
@@ -147,10 +157,9 @@
 
     <nav>
         <a href="#presentation" class="btn">Présentation</a>
-        <a href=""galerie.html" class="btn">Galerie</a>
-        <a href="#videos" class="btn">Vidéos</a>
+        <a href="galerie.html" class="btn">Galerie</a>
         <a href="https://web.facebook.com/profile.php?id=100064074365576&sk=photos_by" class="btn">Photos</a>
-        <a href="https://web.facebook.com/profile.php?id=100064074365576&sk=videos" class="btn">REEL</a>
+        <a href="https://web.facebook.com/profile.php?id=100064074365576&sk=videos" class="btn">Vidéos</a>
         <button class="btn" onclick="openModal()">A PROPOS DE NOUS</button>
     </nav>
 
@@ -173,25 +182,38 @@
         <div class="dots" id="dots"></div>
     </section>
 
+    <!-- Espace vidéo après galerie -->
     <section id="videos">
-        <h2>Nos Vidéos</h2>
-        <div class="video-slider">
-            <div class="video-slides" id="videoSlides"></div>
-            <button class="prev" onclick="moveVideo(-1)">❮</button>
-            <button class="next" onclick="moveVideo(1)">❯</button>
+        <h2>Vidéos</h2>
+        <div class="video-container">
+            <video controls controlsList="nodownload" oncontextmenu="return false" autoplay muted loop>
+                <source src="video1.mp4" type="video/mp4">
+            </video>
+            <div class="watermark">MAP MADAGASCAR BY NATI NANOL</div>
         </div>
-        <div class="video-dots" id="videoDots"></div>
+        <div class="video-container">
+            <video controls controlsList="nodownload" oncontextmenu="return false" autoplay muted loop>
+                <source src="video2.mp4" type="video/mp4">
+            </video>
+            <div class="watermark">MAP MADAGASCAR BY NATI NANOL</div>
+        </div>
+        <div class="video-container">
+            <video controls controlsList="nodownload" oncontextmenu="return false" autoplay muted loop>
+                <source src="video3.mp4" type="video/mp4">
+            </video>
+            <div class="watermark">MAP MADAGASCAR BY NATI NANOL</div>
+        </div>
+        <div class="video-container">
+            <video controls controlsList="nodownload" oncontextmenu="return false" autoplay muted loop>
+                <source src="video4.mp4" type="video/mp4">
+            </video>
+            <div class="watermark">MAP MADAGASCAR BY NATI NANOL</div>
+        </div>
     </section>
 
-    <!-- Modal Images -->
     <div id="imgModal" class="modal">
         <span class="close" onclick="closeImg()">&times;</span>
         <img id="modalImg">
-    </div>
-
-    <div id="videoModal" class="modal">
-        <span class="close" onclick="closeVideo()">&times;</span>
-        <video id="modalVideo" controls></video>
     </div>
 
     <div id="myModal" class="modal">
@@ -211,7 +233,7 @@
         function openModal() { document.getElementById("myModal").style.display = "flex"; }
         function closeModal() { document.getElementById("myModal").style.display = "none"; }
 
-        // Galerie Images
+        // Galerie
         const slidesContainer = document.getElementById("slides");
         const dotsContainer = document.getElementById("dots");
         const totalImages = 25; // car1.png → car25.png
@@ -238,7 +260,10 @@
             if (index >= slides.length) index = 0;
             if (index < 0) index = slides.length - 1;
             currentIndex = index;
-            slidesContainer.scrollTo({ left: slides[index].offsetLeft, behavior: "smooth" });
+            slidesContainer.scrollTo({
+             left: slides[index].offsetLeft,
+             behavior: "smooth"
+            }); 
             dots.forEach(dot => dot.classList.remove("active"));
             dots[index].classList.add("active");
         }
@@ -256,59 +281,9 @@
 
         showSlide(0);
         startAutoSlide();
-
-        const videoContainer = document.getElementById("videoSlides");
-        const videoDotsContainer = document.getElementById("videoDots");
-        const totalVideos = 4; // video1.mp4 → video4.mp4
-        let videoIndex = 0;
-
-        for (let i = 1; i <= totalVideos; i++) {
-            const video = document.createElement("video");
-            video.src = "video" + i + ".mp4";
-            video.controls = false;
-            video.addEventListener("click", () => openVideo(video.src));
-            videoContainer.appendChild(video);
-
-            const dot = document.createElement("span");
-            dot.classList.add("video-dot");
-            dot.addEventListener("click", () => goToVideo(i - 1));
-            videoDotsContainer.appendChild(dot);
-        }
-
-        const videoSlides = document.querySelectorAll(".video-slides video");
-        const videoDots = document.querySelectorAll(".video-dot");
-
-        function showVideo(index) {
-            if (index >= videoSlides.length) index = 0;
-            if (index < 0) index = videoSlides.length - 1;
-            videoIndex = index;
-            videoContainer.scrollTo({ left: videoSlides[index].offsetLeft, behavior: "smooth" });
-            videoDots.forEach(dot => dot.classList.remove("active"));
-            videoDots[index].classList.add("active");
-        }
-
-        function moveVideo(step) { showVideo(videoIndex + step); }
-        function goToVideo(index) { showVideo(index); }
-
-        function openVideo(src) {
-            document.getElementById("videoModal").style.display = "flex";
-            const modalVideo = document.getElementById("modalVideo");
-            modalVideo.src = src;
-            modalVideo.play();
-        }
-        function closeVideo() {
-            const modal = document.getElementById("videoModal");
-            const modalVideo = document.getElementById("modalVideo");
-            modal.style.display = "none";
-            modalVideo.pause();
-            modalVideo.currentTime = 0;
-        }
-
-        showVideo(0);
     </script>
 
     <script>
-        // Ouvrir les liens externes dans un nouvel onglet
         document.querySelectorAll("a[href]").forEach(link => {
             const url = link.getAttribute("href");
             if (url.startsWith("http")) {
@@ -320,4 +295,3 @@
 
 </body>
 </html>
-
